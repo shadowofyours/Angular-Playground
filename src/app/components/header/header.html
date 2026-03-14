@@ -1,0 +1,36 @@
+<header class="header">
+  <!-- Logo Section -->
+  <div class="header-logo">
+    <a href="/" class="header-logo-link">
+      <span class="header-logo-text">🎮 Angular Playground</span>
+    </a>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="header-nav">
+    <ul class="header-nav-list">
+      @for (link of navLinks; track link.route) {
+        <li class="header-nav-item">
+          <a [routerLink]="link.route" class="header-nav-link">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <!-- User Section -->
+  <div class="header-user">
+    @if (currentUser()) {
+      <!-- Logged In State -->
+      <div class="header-user-profile">
+        <span class="header-user-name">{{ currentUser()?.name }}</span>
+        <button class="btn btn--logout" (click)="logout()">Logout</button>
+      </div>
+    } @else {
+      <!-- Logged Out State -->
+      <div class="header-user-actions">
+        <button class="btn btn--login" (click)="login()">Login</button>
+        <button class="btn btn--signup" (click)="setDemoUser()">Demo User</button>
+      </div>
+    }
+  </div>
+</header>
